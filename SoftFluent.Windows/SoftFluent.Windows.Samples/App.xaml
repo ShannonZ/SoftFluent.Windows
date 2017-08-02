@@ -98,13 +98,20 @@
         </Window>
 
         <DataTemplate x:Key="PercentEditor">
-            <Slider Orientation="Horizontal" IsSnapToTickEnabled="True"
-                    Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ChangeTypeConverter}, ConverterParameter={x:Type sys:Double}}"
-                    Minimum="0"
-                    Maximum="100"
-                    Interval="1"
-                    IsEnabled="{Binding IsReadWrite}"
-                    Background="{Binding IsDefaultValue, Converter={StaticResource BoolToDefaultValueBackgroundConverter}}"></Slider>
+            <DockPanel LastChildFill="true">
+                <TextBox IsReadOnly="True" 
+                         Width ="50"
+                         Background="{Binding IsDefaultValue, Converter={StaticResource BoolToDefaultValueBackgroundConverter}}" 
+                         Text="{Binding TextValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         DockPanel.Dock="Left" />
+                <Slider Orientation="Horizontal" IsSnapToTickEnabled="True" DockPanel.Dock="Right"
+                        Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Minimum="-2"
+                        Maximum="4"
+                        Interval="1"
+                        IsEnabled="{Binding IsReadWrite}"
+                        Background="{Binding IsDefaultValue, Converter={StaticResource BoolToDefaultValueBackgroundConverter}}" />  
+            </DockPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="ColorEditor">
